@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Проект</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a id="back" class="back" href="#">← К предмету</a>
+      <div id="title" class="title"></div>
+      <div style="width:110px"></div>
+    </div>
+
+    <div class="viewer">
+      <div class="card">
+        <h2>Презентация (PDF)</h2>
+        <iframe id="presentation" class="embed"></iframe>
+      </div>
+
+      <div class="card">
+        <h2>Текст доклада / проекта (PDF)</h2>
+        <iframe id="text" class="embed"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const subjectId = params.get("subject");
+    const projectId = params.get("project");
+
+    const subj = DATA.subjects.find(s => s.id === subjectId);
+    const proj = subj?.projects.find(p => p.id === projectId);
+
+    const title = document.getElementById("title");
+    const back = document.getElementById("back");
+
+    back.href = `subject.html?subject=${encodeURIComponent(subjectId)}`;
+
+    if (!subj || !proj) {
+      title.textContent = "Проект не найден";
+    } else {
+      title.textContent = proj.title;
+      document.getElementById("presentation").src = proj.presentationPdf;
+      document.getElementById("text").src = proj.textPdf;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Предмет</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a class="back" href="index.html">← На главную</a>
+      <div id="title" class="title"></div>
+      <div style="width:110px"></div>
+    </div>
+
+    <div id="projects" class="grid"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const subjectId = params.get("subject");
+
+    const subj = DATA.subjects.find(s => s.id === subjectId);
+
+    const title = document.getElementById("title");
+    const grid = document.getElementById("projects");
+
+    if (!subj) {
+      title.textContent = "Предмет не найден";
+    } else {
+      title.textContent = subj.title;
+
+      subj.projects.forEach(p => {
+        const a = document.createElement("a");
+        a.className = "btn";
+        a.href = `project.html?subject=${encodeURIComponent(subj.id)}&project=${encodeURIComponent(p.id)}`;
+        a.textContent = p.title;
+        grid.appendChild(a);
+      });
+    }
+  </script>
+</body>
+</html>

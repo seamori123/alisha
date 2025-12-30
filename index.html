@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Проекты</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>ПРОЕКТЫ, ДОКЛАДЫ И ПРЕЗЕНТАЦИИ ЛЮБИМОЙ</h1>
+      <p>Выбери предмет</p>
+    </div>
+
+    <div id="subjects" class="grid"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const box = document.getElementById("subjects");
+
+    DATA.subjects.forEach(s => {
+      const a = document.createElement("a");
+      a.className = "btn";
+      a.href = `subject.html?subject=${encodeURIComponent(s.id)}`;
+      a.textContent = s.title;
+      box.appendChild(a);
+    });
+  </script>
+</body>
+</html>
