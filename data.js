@@ -9,7 +9,7 @@ const DATA = {
           title: "1.1 2.6. Профессиональные деформации педагога",
           presentationPdf: "assets/pdf/prof-deformaciya-pptx.pdf",
           textPdf: "assets/pdf/prof-deformaciya-docs.pdf"
-        }
+        },
         {
           id: "vigoranie",
           title: "1.5 2.4. Профессиональное выгорание педагога",
